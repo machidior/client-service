@@ -1,0 +1,17 @@
+package com.machi.tech.customer_service.dto;
+
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Getter
+@AllArgsConstructor
+@NoArgsConstructor
+@Setter
+public class KycSalaryLoanCustomerDocumentDto {
+    private Long id;
+    private String type;
+    private SalaryLoanCustomerDto customer;
+}
