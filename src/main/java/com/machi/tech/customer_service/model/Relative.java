@@ -17,11 +17,8 @@ public class Relative {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @ManyToOne
-    @JoinColumn(name = "business_customer_id",nullable = false)
-    private BusinessLoanCustomer businessLoanCustomer;
-    @ManyToOne
-    @JoinColumn(name = "salary_customer_id",nullable = false)
-    private SalaryLoanCustomer salaryLoanCustomer;
+    @JoinColumn(name = "client_id",nullable = false)
+    private Client client;
     @Embedded
     private Name fullName;
     private String phoneNumber;

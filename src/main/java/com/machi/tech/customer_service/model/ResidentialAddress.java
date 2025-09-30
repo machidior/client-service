@@ -8,12 +8,13 @@ import lombok.Setter;
 
 @Entity
 @Table
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Getter
 @Setter
-public class ResidentialAddress extends Address {
+public class ResidentialAddress extends Address{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    private String famousName;
 }
