@@ -15,10 +15,10 @@ public class CustomClientIdGenerator implements IdentifierGenerator {
     @Override
     public Serializable generate(SharedSessionContractImplementor session, Object object) throws HibernateException {
         String prefix = "FFC-";
-        String datePart = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyyMMdd"));
+        String datePart = LocalDate.now().format(DateTimeFormatter.ofPattern("yyMM"));
 
         String todayPrefix = prefix + datePart;
-        String query = "SELECT MAX(c.id) FROM client c WHERE c.id LIKE :prefix";
+        String query = "SELECT MAX(c.id) FROM Client c WHERE c.id LIKE :prefix";
         String maxId = (String) session.createQuery(query)
             .setParameter("prefix", todayPrefix + "%")
             .uniqueResult();
