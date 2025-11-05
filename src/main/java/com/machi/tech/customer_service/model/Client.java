@@ -1,14 +1,12 @@
 package com.machi.tech.customer_service.model;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.machi.tech.customer_service.enums.EducationLevel;
 import com.machi.tech.customer_service.enums.Gender;
 import com.machi.tech.customer_service.enums.MaritalStatus;
+import com.machi.tech.customer_service.enums.Status;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.GenericGenerator;
-import org.springframework.data.annotation.CreatedDate;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -42,6 +40,10 @@ public class Client {
     private String email;
     private Long phoneNumber;
     private String passportSizePhoto;
+    private String loanOfficerId;
+
+    @Enumerated(EnumType.STRING)
+    private Status status;
     @CreationTimestamp
     @Column(name = "date_of_registration", updatable = false)
     private LocalDateTime dateOfRegistration;

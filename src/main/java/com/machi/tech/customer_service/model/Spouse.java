@@ -20,10 +20,10 @@ public class Spouse {
     @Column(unique = true)
     private Long nidaNumber;
     @Lob
-    @Column(name = "marriage_certificate", columnDefinition = "LONGBLOB")
-    private byte[] marriageCertificate;
+    @Column(name = "marriage_certificate")
+    private String marriageCertificate;
     @Lob
-    @Column(name = "consent_document", columnDefinition = "LONGBLOB")
-    private byte[] consentDocument;
+    @Column(name = "consent_document")
+    private String consentDocument;
 
 }

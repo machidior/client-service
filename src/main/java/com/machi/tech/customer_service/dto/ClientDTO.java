@@ -28,4 +28,6 @@ public class ClientDTO {
     private String email;
     private Long phoneNumber;
     private String passportSizePhoto;
+    private String loanOfficerId;
+    private String status;
 }

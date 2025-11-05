@@ -4,6 +4,7 @@ import com.machi.tech.customer_service.dto.ClientDTO;
 import com.machi.tech.customer_service.enums.EducationLevel;
 import com.machi.tech.customer_service.enums.Gender;
 import com.machi.tech.customer_service.enums.MaritalStatus;
+import com.machi.tech.customer_service.enums.Status;
 import com.machi.tech.customer_service.model.Client;
 
 public class ClientMapper {
@@ -35,6 +36,11 @@ public class ClientMapper {
         client.setEmail(dto.getEmail());
         client.setPhoneNumber(dto.getPhoneNumber());
         client.setPassportSizePhoto(dto.getPassportSizePhoto());
+        client.setLoanOfficerId(dto.getLoanOfficerId());
+
+        if (dto.getStatus() != null) {
+            client.setStatus(Status.valueOf(dto.getStatus().toUpperCase()));
+        }
 
         return client;
     }
@@ -57,6 +63,8 @@ public class ClientMapper {
         dto.setEmail(client.getEmail());
         dto.setPhoneNumber(client.getPhoneNumber());
         dto.setPassportSizePhoto(client.getPassportSizePhoto());
+        dto.setLoanOfficerId(client.getLoanOfficerId());
+        dto.setStatus(client.getStatus() != null ? client.getStatus().name() : null);
 
         return dto;
     }
