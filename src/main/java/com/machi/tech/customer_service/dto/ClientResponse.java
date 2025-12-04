@@ -1,52 +1,32 @@
-package com.machi.tech.customer_service.model;
+package com.machi.tech.customer_service.dto;
 
 import com.machi.tech.customer_service.enums.EducationLevel;
 import com.machi.tech.customer_service.enums.Gender;
 import com.machi.tech.customer_service.enums.MaritalStatus;
 import com.machi.tech.customer_service.enums.Status;
-import jakarta.persistence.*;
+import com.machi.tech.customer_service.model.*;
 import lombok.*;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
-
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
-@Entity
-@Table(name = "clients")
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
+@Data
 @Builder
-public class Client {
-    @Id
+public class ClientResponse {
+
     private String id;
-    @Embedded
     private Name fullName;
-    @Column(name = "date_of_birth")
     private LocalDate dateOfBirth;
-    @Column(name = "nida_number", unique = true, nullable = false)
-    private String nidaNumber;
     private Integer age;
-    @Enumerated(EnumType.STRING)
+    private String nidaNumber;
     private Gender gender;
-    @Enumerated(EnumType.STRING)
     private MaritalStatus maritalStatus;
-    @OneToOne(cascade = CascadeType.ALL)
     private HomeAddress homeAddress;
-    private String citizenship;
-    @OneToOne(cascade = CascadeType.ALL)
     private ResidentialAddress residentialAddress;
-    @Enumerated(EnumType.STRING)
     private EducationLevel educationLevel;
     private String email;
     private Long phoneNumber;
-    private String loanOfficerId;
-    @Enumerated(EnumType.STRING)
     private Status status;
-    @Column(name = "date_of_registration", updatable = false)
     private LocalDateTime dateOfRegistration;
 
     private String passportSizeUrl;
@@ -54,14 +34,6 @@ public class Client {
     private String identificationCardUrl;
     private String utilityBillUrl;
 
-    @OneToOne(cascade = CascadeType.ALL)
     private NextOfKin nextOfKin;
-    @OneToOne(cascade = CascadeType.ALL)
     private SpouseDetails spouseDetails;
-
-
-    @CreationTimestamp
-    private LocalDateTime createdAt;
-    @UpdateTimestamp
-    private LocalDateTime updatedAt;
 }

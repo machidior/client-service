@@ -16,5 +16,5 @@ public class Address {
     private String district;
     private String region;
     private String ward;
-
+    private String zipCode;
 }

@@ -4,14 +4,16 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Table(name = "home_address")
-@Getter
-@Setter
+@Table
 @AllArgsConstructor
 @NoArgsConstructor
+@Getter
+@Setter
 @Builder
-public class HomeAddress extends Address{
+public class RelativeResidentialAddress extends Address{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    private Long houseNumber;
+    private String famousName;
 }

@@ -1,17 +1,16 @@
 package com.machi.tech.customer_service.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Entity
+@Table
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Spouse {
+@Builder
+public class SpouseDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -19,11 +18,10 @@ public class Spouse {
     private Name fullName;
     @Column(unique = true)
     private Long nidaNumber;
-    @Lob
-    @Column(name = "marriage_certificate")
-    private String marriageCertificate;
-    @Lob
-    @Column(name = "consent_document")
-    private String consentDocument;
+    private Integer phoneNumber;
+    @Column(name = "marriage_certificate_url")
+    private String marriageCertificateUrl;
+    @Column(name = "consent_document_url")
+    private String consentDocumentUrl;
 
 }
