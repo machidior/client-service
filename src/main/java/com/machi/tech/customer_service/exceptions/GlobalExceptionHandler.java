@@ -1,31 +1,26 @@
 package com.machi.tech.customer_service.exceptions;
 
-import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 
 import org.springframework.web.bind.MethodArgumentNotValidException;
 
+import java.util.HashMap;
+import java.util.Map;
+
+//TODO: handle ClientNotFoundException, ResourceNotFoundException, FileExceptions, ... [Hint: 403 - for Forbidden]
+//TODO: create ExceptionResponse class to return the the exceptions response
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
-    @ExceptionHandler(ResourceNotFoundException.class)
-    public ResponseEntity<?> handleNotFound(ResourceNotFoundException e) {
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
-    }
-
-    @ExceptionHandler(DuplicateResourceException.class)
-    public ResponseEntity<?> handleDuplicate(DuplicateResourceException e) {
-        return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());
-    }
-
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<?> handleValidation(MethodArgumentNotValidException ex) {
-        return ResponseEntity.badRequest().body(ex.getBindingResult().toString());
-    }
+    public Map<String, String> handleInvalidMethodArgumentException(MethodArgumentNotValidException e){
 
-    @ExceptionHandler(ConstraintViolationException.class)
-    public ResponseEntity<?> handleConstraint(ConstraintViolationException ex) {
-        return ResponseEntity.badRequest().body(ex.getMessage());
+        Map<String, String> errorMap = new HashMap<>();
+        e.getBindingResult().getFieldErrors().forEach(error -> {
+            errorMap.put(error.getField(), error.getDefaultMessage());
+        });
+        return errorMap;
     }
 }

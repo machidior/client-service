@@ -29,7 +29,7 @@ public class ClientController {
     private final FileStorageService fileStorageService;
 
     @PostMapping("/create/personal-details")
-    public ResponseEntity<ClientResponse> createPersonalDetails(@RequestBody PersonalDetails personalDetails){
+    public ResponseEntity<ClientResponse> createPersonalDetails(@RequestBody @Valid PersonalDetails personalDetails){
         return ResponseEntity.ok(clientService.createClient(personalDetails));
     }
 
@@ -103,19 +103,19 @@ public class ClientController {
         return ResponseEntity.noContent().build();
     }
 
+    //fixme: Files should be saved in the separately paths (fetch the implementation from the loan service).
     @PostMapping("/{id}/kyc")
     public ResponseEntity<String> uploadKycFile(
             @PathVariable String id,
             @RequestParam("documentType") String documentType,
-            @RequestParam("file") MultipartFile file) throws IOException {   // <-- declare here
+            @RequestParam("file") MultipartFile file) throws IOException {
 
+        //FIXME: Don't call repository directly into this layer
         Client client = clientRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Client not found"));
-
         String fileName = fileStorageService.saveFile(file, id, documentType);
 
         return ResponseEntity.ok("File uploaded: " + fileName);
     }
-
-
 }
+

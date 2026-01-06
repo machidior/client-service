@@ -4,6 +4,10 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.machi.tech.customer_service.enums.Relationship;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "next_of_kin")
@@ -27,5 +31,10 @@ public class NextOfKin {
     private Relationship relationship;
     @OneToOne(cascade = CascadeType.ALL)
     private RelativeResidentialAddress relativeResidentialAddress;
+
+    @CreationTimestamp
+    private LocalDateTime createdAt;
+    @UpdateTimestamp
+    private LocalDateTime updatedAt;
 
 }

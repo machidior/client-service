@@ -2,6 +2,10 @@ package com.machi.tech.customer_service.model;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
+import java.time.LocalDateTime;
 
 @Entity
 @Table
@@ -23,5 +27,10 @@ public class SpouseDetails {
     private String marriageCertificateUrl;
     @Column(name = "consent_document_url")
     private String consentDocumentUrl;
+
+    @CreationTimestamp
+    private LocalDateTime createdAt;
+    @UpdateTimestamp
+    private LocalDateTime updatedAt;
 
 }

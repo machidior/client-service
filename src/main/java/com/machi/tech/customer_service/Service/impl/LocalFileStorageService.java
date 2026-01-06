@@ -88,7 +88,6 @@ public class LocalFileStorageService implements FileStorageService {
                 return null;
             }
 
-            // Create storage folder if not exists
             Files.createDirectories(Paths.get(kycStoragePath));
 
             String fileName = namePrefix + "-" + UUID.randomUUID() +

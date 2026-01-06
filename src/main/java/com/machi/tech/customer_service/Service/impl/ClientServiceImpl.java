@@ -122,6 +122,7 @@ public class ClientServiceImpl implements ClientService {
 
     private void validateAge(LocalDate dob) {
         if (dob.plusYears(18).isAfter(LocalDate.now()))
+            //TODO: Customize IllegalArgumentException
             throw new IllegalArgumentException("Client must be at least 18 years old");
     }
 }
